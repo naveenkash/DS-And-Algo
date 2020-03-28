@@ -122,6 +122,7 @@ class LinkedList {
 }
 
 var ll = new LinkedList();
+
 ll.insertAtFirst(4);
 ll.insertAtLast(6);
 ll.insertAtLast(8);
@@ -132,4 +133,6 @@ ll.insertAtLast(13);
 ll.insertAt(36, 2);
 ll.swapNodesWithoutDataSwap(36, 4);
 ll.traverse();
+
 console.log(ll);
+

@@ -134,7 +134,7 @@ ll.insertAt(36, 2);
 ll.swapNodesWithoutDataSwap(36, 4);
 ll.traverse();
 
-console.log(ll);
+console.log("Basic Methods", ll);
 
 var addNode1 = new Node(3);
 var addNode2 = new Node(2, addNode1);
@@ -144,12 +144,11 @@ var addNode3 = new Node(6);
 var addNode4 = new Node(5, addNode3);
 var l2 = new Node(4, addNode4);
 
-function mergeSortedLinkedList(l1, l2) {
+function mergeTwoSortedLinkedList(l1, l2) {
   var mergeSortedLinkedList = { value: -1, next: null };
   var dummyNode = mergeSortedLinkedList;
   while (l1 && l2) {
     if (l1.value > l2.value) {
-      document.write(JSON.stringify(dummyNode));
       dummyNode.next = l2;
       l2 = l2.next;
     } else {
@@ -161,6 +160,67 @@ function mergeSortedLinkedList(l1, l2) {
   dummyNode.next = l1 || l2;
   return mergeSortedLinkedList.next;
 }
-var ml = mergeSortedLinkedList(l1, l2);
 
-console.log(ml);
+var ml = mergeTwoSortedLinkedList(l1, l2);
+console.log("mergeTwoSortedLinkedList", ml);
+
+// creares random node
+function getLinkedList() {
+  var randomList = null;
+  var randomNumber = Math.floor(Math.random() * 15);
+  for (let i = 0; i < randomNumber; i++) {
+    var randomNumber2 = Math.floor(Math.random() * 15);
+    var list = new Node(randomNumber2, randomList);
+    randomList = list;
+  }
+  return randomList;
+}
+
+// mergeSortLinkedList
+function mergeSortLinkedList(ll) {
+  if (ll == null || ll.next == null) {
+    return ll;
+  }
+
+  var temp = ll;
+  var slow = ll;
+  var fast = ll;
+
+  while (fast != null && fast.next != null) {
+    temp = slow;
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  temp.next = null;
+  var left_side = mergeSortLinkedList(ll);
+  var right_side = mergeSortLinkedList(slow);
+  return mergeSortTwoLinkedList(left_side, right_side);
+}
+
+function mergeSortTwoLinkedList(left, right) {
+  var sorted_temp = { value: -1, next: null };
+  var current_node = sorted_temp;
+
+  while (left != null && right != null) {
+    if (left.value < right.value) {
+      current_node.next = left;
+      left = left.next;
+    } else {
+      current_node.next = right;
+      right = right.next;
+    }
+    current_node = current_node.next;
+  }
+  if (left != null) {
+    current_node.next = left;
+    left = left.next;
+  }
+  if (right != null) {
+    current_node.next = right;
+    right = right.next;
+  }
+  return sorted_temp.next;
+}
+
+let mergeSort = mergeSortLinkedList(getLinkedList());
+console.log("mergeSortLinkedList", mergeSort);

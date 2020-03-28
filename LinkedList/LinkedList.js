@@ -136,9 +136,9 @@ ll.traverse();
 
 console.log(ll);
 
-var addNode = new Node(3);
-var addNode1 = new Node(2, addNode);
-var l1 = new Node(1, addNode1);
+var addNod1 = new Node(3);
+var addNode2 = new Node(2, addNode1);
+var l1 = new Node(1, addNode2);
 
 var addNode3 = new Node(6);
 var addNode4 = new Node(5, addNode3);

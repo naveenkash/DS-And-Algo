@@ -136,3 +136,31 @@ ll.traverse();
 
 console.log(ll);
 
+var addNode = new Node(3);
+var addNode1 = new Node(2, addNode);
+var l1 = new Node(1, addNode1);
+
+var addNode3 = new Node(6);
+var addNode4 = new Node(5, addNode3);
+var l2 = new Node(4, addNode4);
+
+function mergeSortedLinkedList(l1, l2) {
+  var mergeSortedLinkedList = { value: -1, next: null };
+  var dummyNode = mergeSortedLinkedList;
+  while (l1 && l2) {
+    if (l1.value > l2.value) {
+      document.write(JSON.stringify(dummyNode));
+      dummyNode.next = l2;
+      l2 = l2.next;
+    } else {
+      dummyNode.next = l1;
+      l1 = l1.next;
+    }
+    dummyNode = dummyNode.next;
+  }
+  dummyNode.next = l1 || l2;
+  return mergeSortedLinkedList.next;
+}
+var ml = mergeSortedLinkedList(l1, l2);
+
+console.log(ml);

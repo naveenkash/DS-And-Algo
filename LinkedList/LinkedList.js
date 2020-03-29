@@ -211,11 +211,11 @@ function mergeSortTwoLinkedList(left, right) {
     }
     current_node = current_node.next;
   }
-  if (left != null) {
+  while (left != null) {
     current_node.next = left;
     left = left.next;
   }
-  if (right != null) {
+  while (right != null) {
     current_node.next = right;
     right = right.next;
   }

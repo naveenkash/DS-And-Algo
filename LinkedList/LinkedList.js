@@ -165,11 +165,10 @@ var ml = mergeTwoSortedLinkedList(l1, l2);
 console.log("mergeTwoSortedLinkedList", ml);
 
 // creares random node
-function getLinkedList() {
+function getNode() {
   var randomList = null;
-  var randomNumber = Math.floor(Math.random() * 15);
-  for (let i = 0; i < randomNumber; i++) {
-    var randomNumber2 = Math.floor(Math.random() * 15);
+  for (let i = 9; i >= 1; i--) {
+    var randomNumber2 = i;
     var list = new Node(randomNumber2, randomList);
     randomList = list;
   }
@@ -222,5 +221,26 @@ function mergeSortTwoLinkedList(left, right) {
   return sorted_temp.next;
 }
 
-let mergeSort = mergeSortLinkedList(getLinkedList());
+let mergeSort = mergeSortLinkedList(getNode());
 console.log("mergeSortLinkedList", mergeSort);
+
+function ReverseListInGroupSize(ll, k) {
+  var prev = null,
+    current = ll,
+    nextNode,
+    count = 0;
+  while (current !== null && count < k) {
+    nextNode = current.next;
+    current.next = prev;
+    prev = current;
+    current = nextNode;
+    count++;
+  }
+  if (nextNode !== null) {
+    // Asssigning the next node to the last element of current reveresed list
+    // Next node is actually the first node of the next set of reversed list
+    ll.next = ReverseListInGroupSize(nextNode, k);
+  }
+  return prev;
+}
+console.log("ReverseListInGroupSize", ReverseListInGroupSize(getNode(), 3));

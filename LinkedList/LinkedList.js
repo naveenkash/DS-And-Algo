@@ -16,6 +16,11 @@ class LinkedList {
   }
   insertAtLast(val) {
     var current = this.head;
+    if (current == null) {
+      this.head = new Node(val);
+      this.size++;
+      return;
+    }
     while (current.next) {
       current = current.next;
     }
@@ -118,6 +123,23 @@ class LinkedList {
       currNode = nextNode;
     }
     this.head = prevNode;
+  }
+  createLoop(k, l) {
+    var count = 1;
+    var count2 = 1;
+    var current = this.head;
+    var current2 = this.head;
+    while (count < k) {
+      // node to point next to create loop ex: 1->2->3->4->5 = 2 node to point
+      current = current.next;
+      count++;
+    }
+    while (count2 < l) {
+      // node to which we want to point next ex: 1->2->3->4->5 = 5 node to point to 2
+      current2 = current2.next;
+      count2++;
+    }
+    current2.next = current;
   }
 }
 
@@ -244,3 +266,43 @@ function ReverseListInGroupSize(ll, k) {
   return prev;
 }
 console.log("ReverseListInGroupSize", ReverseListInGroupSize(getNode(), 3));
+
+// making a looped linked list
+var loopedLinkedList = new LinkedList();
+loopedLinkedList.insertAtLast(1);
+loopedLinkedList.insertAtLast(2);
+loopedLinkedList.insertAtLast(3);
+loopedLinkedList.insertAtLast(4);
+loopedLinkedList.insertAtLast(5);
+loopedLinkedList.insertAtLast(6);
+loopedLinkedList.insertAtLast(7);
+loopedLinkedList.insertAtLast(8);
+loopedLinkedList.createLoop(3, 6);
+
+// console.log(loopedLinkedList);
+function detectLoop(ll) {
+  var slow = ll.head;
+  var fast = ll.head;
+
+  while (slow && fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+    if (slow == fast) {
+      return slow;
+    }
+  }
+  return null;
+}
+
+function breakLinkedListLoop(node, head) {
+  if (!node && !head) {
+    return;
+  }
+  var q = head.head.next;
+  while (node.next != q) {
+    node = node.next;
+    q = q.next;
+  }
+  node.next = null;
+}
+breakLinkedListLoop(detectLoop(loopedLinkedList), loopedLinkedList);

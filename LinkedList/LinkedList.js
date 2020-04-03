@@ -339,3 +339,38 @@ function addTwoNumber(l1, l2) {
   return l3.head;
 }
 console.log("addTwoNumber", addTwoNumber(twoNum1, twoNum2));
+
+var rotateList = new LinkedList();
+rotateList.insertAtLast(10);
+rotateList.insertAtLast(20);
+rotateList.insertAtLast(30);
+rotateList.insertAtLast(40);
+rotateList.insertAtLast(50);
+rotateList.insertAtLast(60);
+
+function rotateLinkedList(ll, k) {
+  if (k == 0) {
+    return;
+  }
+
+  var current = ll.head;
+  var count = 1;
+  while (count < k && current.next) {
+    current = current.next;
+    count++;
+  }
+
+  if (current == null) {
+    return;
+  }
+
+  var kthNode = current;
+  while (current.next !== null) {
+    current = current.next;
+  }
+  current.next = ll.head;
+  ll.head = kthNode.next;
+  kthNode.next = null;
+  return ll;
+}
+console.log("rotateLinkedList", rotateLinkedList(rotateList, 4));

@@ -279,7 +279,7 @@ loopedLinkedList.insertAtLast(7);
 loopedLinkedList.insertAtLast(8);
 loopedLinkedList.createLoop(3, 6);
 
-// console.log(loopedLinkedList);
+// Detect and remove loop from linked list
 function detectLoop(ll) {
   var slow = ll.head;
   var fast = ll.head;
@@ -306,3 +306,36 @@ function breakLinkedListLoop(node, head) {
   node.next = null;
 }
 breakLinkedListLoop(detectLoop(loopedLinkedList), loopedLinkedList);
+
+// And two number represented by linked list
+var twoNum1 = new LinkedList();
+twoNum1.insertAtLast(2);
+twoNum1.insertAtLast(4);
+twoNum1.insertAtLast(3);
+var twoNum2 = new LinkedList();
+twoNum2.insertAtLast(5);
+twoNum2.insertAtLast(6);
+twoNum2.insertAtLast(4);
+
+function addTwoNumber(l1, l2) {
+  l1 = l1.head;
+  l2 = l2.head;
+
+  var l3 = new LinkedList();
+  var carry = 0;
+  while (l1 && l2) {
+    l1.value = l1 ? l1.value : 0;
+    l2.value = l2 ? l2.value : 0;
+    var current_sum = l1.value + l2.value + carry;
+    carry = Math.floor(current_sum / 10);
+    var last_digit = current_sum % 10;
+    l3.insertAtLast(last_digit);
+    l1 = l1.next;
+    l2 = l2.next;
+  }
+  if (carry > 0) {
+    l3.insertAtLast(carry);
+  }
+  return l3.head;
+}
+console.log("addTwoNumber", addTwoNumber(twoNum1, twoNum2));

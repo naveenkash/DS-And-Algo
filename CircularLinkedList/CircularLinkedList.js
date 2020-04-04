@@ -9,19 +9,19 @@ insertAtLastNode.insertAtLast(5);
 insertAtLastNode.insertAtLast(6);
 insertAtLastNode.createCircular();
 
-function insertAtLastNodeCircularlist(node, value) {
-  if (node == null || value == null) {
+function insertAtLastNodeCircularlist(ll, value) {
+  if (ll == null || value == null) {
     return false;
   }
-  node = node.head;
-  var temp = node;
-  while (temp.next != node) {
+  ll = ll.head;
+  var temp = ll;
+  while (temp.next != ll) {
     temp = temp.next;
   }
   var newNode = new Node(value);
   temp.next = newNode;
-  newNode.next = node;
-  return node;
+  newNode.next = ll;
+  return ll;
 }
 //Expected output 1->2->-3->4->5->6->7->1-2 so on.
 console.log(
@@ -38,18 +38,18 @@ insertAtFirstNode.insertAtLast(5);
 insertAtFirstNode.insertAtLast(6);
 insertAtFirstNode.createCircular();
 
-function insertAtFirstCircularList(node, value) {
-  if (node == null || value == null) {
+function insertAtFirstCircularList(ll, value) {
+  if (ll == null || value == null) {
     return false;
   }
-  node = node.head;
-  var temp = node;
+  ll = ll.head;
+  var temp = ll;
   var newNode = new Node(value);
-  if (node !== null || node.next !== null) {
-    while (temp.next != node) {
+  if (ll !== null || ll.next !== null) {
+    while (temp.next != ll) {
       temp = temp.next;
     }
-    newNode.next = node;
+    newNode.next = ll;
     temp.next = newNode;
   }
   return newNode;
@@ -59,3 +59,38 @@ console.log(
   "insertAtFirstCircularList",
   insertAtFirstCircularList(insertAtFirstNode, 0)
 );
+
+var insertAtKthNode = new LinkedList();
+insertAtKthNode.insertAtLast(1);
+insertAtKthNode.insertAtLast(2);
+insertAtKthNode.insertAtLast(3);
+insertAtKthNode.insertAtLast(5);
+insertAtKthNode.createCircular();
+
+function insertAtCircularList(ll, k, val) {
+  if (k > ll.size) {
+    return;
+  }
+  var newNode = new Node(val);
+  if (k == 0) {
+    newNode.next = ll.head;
+    ll.head = newNode;
+  }
+  var previous,
+    current = ll.head;
+  count = 0;
+  while (count < k) {
+    previous = current;
+    current = current.next;
+    count++;
+  }
+  newNode.next = current;
+  previous.next = newNode;
+  ll.size++;
+  return ll;
+}
+console.log(
+  "insertAtCircularNode",
+  insertAtCircularList(insertAtKthNode, 3, 4)
+);
+insertAtCircularList(insertAtKthNode, 3, 4);

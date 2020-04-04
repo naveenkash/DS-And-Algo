@@ -69,7 +69,7 @@ insertAtKthNode.createCircular();
 
 function insertAtCircularList(ll, k, val) {
   if (k > ll.size) {
-    return;
+    return false;
   }
   var newNode = new Node(val);
   if (k == 0) {
@@ -91,6 +91,5 @@ function insertAtCircularList(ll, k, val) {
 }
 console.log(
   "insertAtCircularNode",
-  insertAtCircularList(insertAtKthNode, 3, 4)
+  insertAtCircularList(insertAtKthNode, 9, 4)
 );
-insertAtCircularList(insertAtKthNode, 3, 4);

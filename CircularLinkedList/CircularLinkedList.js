@@ -91,5 +91,5 @@ function insertAtCircularList(ll, k, val) {
 }
 console.log(
   "insertAtCircularNode",
-  insertAtCircularList(insertAtKthNode, 9, 4)
+  insertAtCircularList(insertAtKthNode, 3, 4)
 );

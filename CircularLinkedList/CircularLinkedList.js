@@ -1,16 +1,19 @@
-// Using Node class from Linkedlist.js file
-var insertAtLastNode6 = new Node(6);
-var insertAtLastNode5 = new Node(5, insertAtLastNode6);
-var insertAtLastNode4 = new Node(4, insertAtLastNode5);
-var insertAtLastNode3 = new Node(3, insertAtLastNode4);
-var insertAtLastNode2 = new Node(2, insertAtLastNode3);
-var insertAtLastNode = new Node(1, insertAtLastNode2);
-insertAtLastNode6.next = insertAtLastNode;
+// Using LinkedList class from Linkedlist.js file
+
+var insertAtLastNode = new LinkedList();
+insertAtLastNode.insertAtLast(1);
+insertAtLastNode.insertAtLast(2);
+insertAtLastNode.insertAtLast(3);
+insertAtLastNode.insertAtLast(4);
+insertAtLastNode.insertAtLast(5);
+insertAtLastNode.insertAtLast(6);
+insertAtLastNode.createCircular();
 
 function insertAtLastNodeCircularlist(node, value) {
   if (node == null || value == null) {
     return false;
   }
+  node = node.head;
   var temp = node;
   while (temp.next != node) {
     temp = temp.next;
@@ -26,18 +29,20 @@ console.log(
   insertAtLastNodeCircularlist(insertAtLastNode, 7)
 );
 
-var insertAtFirstNode6 = new Node(6);
-var insertAtFirstNode5 = new Node(5, insertAtFirstNode6);
-var insertAtFirstNode4 = new Node(4, insertAtFirstNode5);
-var insertAtFirstNode3 = new Node(3, insertAtFirstNode4);
-var insertAtFirstNode2 = new Node(2, insertAtFirstNode3);
-var insertAtFirstNode = new Node(1, insertAtFirstNode2);
-insertAtFirstNode6.next = insertAtFirstNode;
+var insertAtFirstNode = new LinkedList();
+insertAtFirstNode.insertAtLast(1);
+insertAtFirstNode.insertAtLast(2);
+insertAtFirstNode.insertAtLast(3);
+insertAtFirstNode.insertAtLast(4);
+insertAtFirstNode.insertAtLast(5);
+insertAtFirstNode.insertAtLast(6);
+insertAtFirstNode.createCircular();
 
 function insertAtFirstCircularList(node, value) {
   if (node == null || value == null) {
     return false;
   }
+  node = node.head;
   var temp = node;
   var newNode = new Node(value);
   if (node !== null || node.next !== null) {

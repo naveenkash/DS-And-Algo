@@ -141,6 +141,13 @@ class LinkedList {
     }
     current2.next = current;
   }
+  createCircular() {
+    var temp = this.head;
+    while (temp.next !== null) {
+      temp = temp.next;
+    }
+    temp.next = this.head;
+  }
 }
 
 var ll = new LinkedList();

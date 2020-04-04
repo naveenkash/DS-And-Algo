@@ -93,3 +93,32 @@ console.log(
   "insertAtCircularNode",
   insertAtCircularList(insertAtKthNode, 3, 4)
 );
+var traverseCircularList = new LinkedList();
+traverseCircularList.insertAtLast(1);
+traverseCircularList.insertAtLast(2);
+traverseCircularList.insertAtLast(3);
+traverseCircularList.insertAtLast(4);
+traverseCircularList.insertAtLast(5);
+traverseCircularList.insertAtLast(6);
+traverseCircularList.createCircular();
+
+function traverseCircular(ll) {
+  var current = ll.head,
+    previous = null,
+    count = 0,
+    nextNode;
+  while (count < ll.size) {
+    nextNode = current.next;
+    current.next = previous;
+    previous = current;
+    current = nextNode;
+    count++;
+  }
+  var temp = previous;
+  while (temp.next !== null) {
+    temp = temp.next;
+  }
+  temp.next = previous;
+  return previous;
+}
+console.log("traverseCircular", traverseCircular(traverseCircularList));

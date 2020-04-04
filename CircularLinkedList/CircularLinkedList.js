@@ -93,6 +93,7 @@ console.log(
   "insertAtCircularNode",
   insertAtCircularList(insertAtKthNode, 3, 4)
 );
+
 var traverseCircularList = new LinkedList();
 traverseCircularList.insertAtLast(1);
 traverseCircularList.insertAtLast(2);
@@ -122,3 +123,34 @@ function traverseCircular(ll) {
   return previous;
 }
 console.log("traverseCircular", traverseCircular(traverseCircularList));
+
+var splitCircular = new LinkedList();
+splitCircular.insertAtLast(1);
+splitCircular.insertAtLast(2);
+splitCircular.insertAtLast(3);
+splitCircular.insertAtLast(4);
+splitCircular.insertAtLast(5);
+splitCircular.insertAtLast(6);
+splitCircular.insertAtLast(7);
+splitCircular.insertAtLast(8);
+splitCircular.createCircular();
+function splitCircularInTwoHalves(ll) {
+  if (ll == null) {
+    return;
+  }
+  var temp,
+    slow = ll.head,
+    fast = ll.head;
+  while (fast.next != ll.head && fast.next.next !== ll.head) {
+    temp = slow;
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  if (fast.next.next == ll.head) {
+    fast = fast.next;
+  }
+  fast.next = slow.next;
+  slow.next = ll.head;
+  return [slow.next, fast.next];
+}
+console.log(splitCircularInTwoHalves(splitCircular));

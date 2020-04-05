@@ -163,7 +163,7 @@ ll.insertAt(36, 2);
 ll.swapNodesWithoutDataSwap(36, 4);
 ll.traverse();
 
-console.log("Basic Methods", ll);
+console.log("Basic Singly Linked List Methods", ll);
 
 var addNode1 = new Node(3);
 var addNode2 = new Node(2, addNode1);
@@ -190,6 +190,7 @@ function mergeTwoSortedLinkedList(l1, l2) {
   return mergeSortedLinkedList.next;
 }
 
+// Expected output 1->2->3->4->5->6
 var ml = mergeTwoSortedLinkedList(l1, l2);
 console.log("mergeTwoSortedLinkedList", ml);
 
@@ -249,7 +250,7 @@ function mergeSortTwoLinkedList(left, right) {
   }
   return sorted_temp.next;
 }
-
+// Expected output 1->2->3->4->5->6->7->8->9
 let mergeSort = mergeSortLinkedList(getNode());
 console.log("mergeSortLinkedList", mergeSort);
 
@@ -272,6 +273,8 @@ function ReverseListInGroupSize(ll, k) {
   }
   return prev;
 }
+
+// Expected output 3->2->1->6->5->4->9->8->7
 console.log("ReverseListInGroupSize", ReverseListInGroupSize(getNode(), 3));
 
 // making a looped linked list
@@ -284,7 +287,7 @@ loopedLinkedList.insertAtLast(5);
 loopedLinkedList.insertAtLast(6);
 loopedLinkedList.insertAtLast(7);
 loopedLinkedList.insertAtLast(8);
-loopedLinkedList.createLoop(3, 6);
+loopedLinkedList.createLoop(3, 8);
 
 // Detect and remove loop from linked list
 function detectLoop(ll) {
@@ -312,7 +315,10 @@ function breakLinkedListLoop(node, head) {
   }
   node.next = null;
 }
+
+// Expected output 1->2->3->4->5->6->7->8
 breakLinkedListLoop(detectLoop(loopedLinkedList), loopedLinkedList);
+console.log("breakLinkedListLoop", loopedLinkedList);
 
 // And two number represented by linked list
 var twoNum1 = new LinkedList();
@@ -380,4 +386,5 @@ function rotateLinkedList(ll, k) {
   kthNode.next = null;
   return ll;
 }
+// Expected output 50->60->10->20->30->40
 console.log("rotateLinkedList", rotateLinkedList(rotateList, 4));

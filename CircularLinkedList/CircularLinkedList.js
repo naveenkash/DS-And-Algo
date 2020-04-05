@@ -89,6 +89,7 @@ function insertAtCircularList(ll, k, val) {
   ll.size++;
   return ll;
 }
+// Expected output 1->2->3->4->5
 console.log(
   "insertAtCircularNode",
   insertAtCircularList(insertAtKthNode, 3, 4)
@@ -122,6 +123,7 @@ function traverseCircular(ll) {
   temp.next = previous;
   return previous;
 }
+// Expected output 6->5->4->3->2->1-6->5 so on
 console.log("traverseCircular", traverseCircular(traverseCircularList));
 
 var splitCircular = new LinkedList();
@@ -134,6 +136,7 @@ splitCircular.insertAtLast(6);
 splitCircular.insertAtLast(7);
 splitCircular.insertAtLast(8);
 splitCircular.createCircular();
+
 function splitCircularInTwoHalves(ll) {
   if (ll == null) {
     return;
@@ -151,4 +154,8 @@ function splitCircularInTwoHalves(ll) {
   slow.next = ll.head;
   return [slow.next, fast.next];
 }
-console.log(splitCircularInTwoHalves(splitCircular));
+// Expected output first el in array 1->2->3->4->1 son on seconf el in array 5->6->7->8
+console.log(
+  "splitCircularInTwoHalves",
+  splitCircularInTwoHalves(splitCircular)
+);

@@ -138,11 +138,9 @@ function splitCircularInTwoHalves(ll) {
   if (ll == null) {
     return;
   }
-  var temp,
-    slow = ll.head,
+  var slow = ll.head,
     fast = ll.head;
   while (fast.next != ll.head && fast.next.next !== ll.head) {
-    temp = slow;
     slow = slow.next;
     fast = fast.next.next;
   }

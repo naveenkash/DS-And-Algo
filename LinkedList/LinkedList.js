@@ -112,7 +112,7 @@ class LinkedList {
     nextX.next = nextY.next;
     nextY.next = temp;
   }
-  traverse() {
+  reverseSinglyLinkedList() {
     var nextNode,
       prevNode,
       currNode = this.head;
@@ -161,7 +161,7 @@ ll.insertAtLast(12);
 ll.insertAtLast(13);
 ll.insertAt(36, 2);
 ll.swapNodesWithoutDataSwap(36, 4);
-ll.traverse();
+ll.reverseSinglyLinkedList();
 
 console.log("Basic Singly Linked List Methods", ll);
 

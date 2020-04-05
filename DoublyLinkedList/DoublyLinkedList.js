@@ -78,6 +78,19 @@ class DoublyLinkedList {
     current.next.prev = previous;
     this.size--;
   }
+  reverseDoublyLinkedList() {
+    var current = this.head,
+      temp = null;
+    while (current !== null) {
+      temp = current.prev;
+      current.prev = current.next;
+      current.next = temp;
+      current = current.prev;
+    }
+    if (temp !== null) {
+      this.head = temp.prev;
+    }
+  }
 }
 
 var doublyLinkedList = new DoublyLinkedList();
@@ -87,5 +100,6 @@ doublyLinkedList.insertAtlast(3);
 doublyLinkedList.insertAtlast(5);
 doublyLinkedList.insertAt(4, 3);
 doublyLinkedList.removeAt(1);
+doublyLinkedList.reverseDoublyLinkedList();
 //Expected Output null<-1-><-2->-<3-><-4-><-5-> null (-> = null <- = prev) <-5-> 5 prev = 4 , 5 next = null
 console.log("Basic Doubly Linked List Methods", doublyLinkedList);

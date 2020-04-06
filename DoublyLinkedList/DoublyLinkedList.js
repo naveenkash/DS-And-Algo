@@ -103,3 +103,63 @@ doublyLinkedList.removeAt(1);
 doublyLinkedList.reverseDoublyLinkedList();
 //Expected Output null<-1-><-2->-<3-><-4-><-5-> null (-> = null <- = prev) <-5-> 5 prev = 4 , 5 next = null
 console.log("Basic Doubly Linked List Methods", doublyLinkedList);
+
+var doublyLinkedList2 = new DoublyLinkedList();
+doublyLinkedList2.insertAtlast(1);
+doublyLinkedList2.insertAtlast(2);
+doublyLinkedList2.insertAtlast(4);
+doublyLinkedList2.insertAtlast(3);
+doublyLinkedList2.insertAtlast(6);
+doublyLinkedList2.insertAtlast(5);
+doublyLinkedList2.insertAtlast(8);
+doublyLinkedList2.insertAtlast(7);
+
+function mergeDoublyLinkedList(ll) {
+  if (ll == null || ll.next == null) {
+    return ll;
+  }
+  var fast = ll,
+    slow = ll,
+    temp = ll;
+  while (fast && fast.next) {
+    temp = slow;
+    fast = fast.next.next;
+    slow = slow.next;
+  }
+  temp.next = null;
+  var left = mergeDoublyLinkedList(ll);
+  var right = mergeDoublyLinkedList(slow);
+  return mergeSortDoublyLinkedList(left, right);
+}
+function mergeSortDoublyLinkedList(left, right) {
+  var sorted_temp = { value: null, next: null, prev: null };
+  var current = sorted_temp;
+  while (left !== null && right !== null) {
+    if (left.value < right.value) {
+      current.next = left;
+      current.next.prev = current;
+      left = left.next;
+    } else {
+      current.next = right;
+      current.next.prev = current;
+      right = right.next;
+    }
+    current = current.next;
+  }
+  if (left !== null) {
+    current.next = left;
+    current.next.prev = current;
+    current = current.next;
+  }
+  if (right !== null) {
+    current.next = right;
+    current.next.prev = current;
+    current = current.next;
+  }
+  return sorted_temp.next;
+}
+// Expected output 1-><-2-><-3-><-4-><-5-><-6-><-7-><-8-> null (-> = null <- = prev) <-5-> 5 prev = 4 , 5 next = 6
+console.log(
+  "mergeSortDoublyLinkedList",
+  mergeDoublyLinkedList(doublyLinkedList2.head)
+);

@@ -1,9 +1,9 @@
 var arrayForBubbleSort = [3, 5, 9, 1, 0, 16, 2, 2, -1, 0];
 
 function bubbleSort(arr) {
-  var lastUnsorted = arr.length - 1;
-  for (let i = 0; i <= lastUnsorted; i++) {
-    for (let j = 0; j <= lastUnsorted; j++) {
+  var length = arr.length - 1;
+  for (let i = 0; i <= length; i++) {
+    for (let j = 0; j <= length; j++) {
       if (arr[i] < arr[j]) {
         var temp = arr[i];
         arr[i] = arr[j];

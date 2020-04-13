@@ -4,7 +4,7 @@ function bubbleSort(arr) {
   var lastUnsorted = arr.length;
   for (let i = 0; i < lastUnsorted; i++) {
     for (let j = 0; j < lastUnsorted; j++) {
-      if (arr[i] > arr[j]) {
+      if (arr[i] < arr[j]) {
         var temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;

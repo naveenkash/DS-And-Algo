@@ -34,4 +34,21 @@ function selectionSort(arr) {
   }
   return arr;
 }
-console.log("selectionSort", selectionSort(arrayForSelectionSort));
+console.log("selection Sort", selectionSort(arrayForSelectionSort));
+
+var arrayForInsertionSort = [5, 8, 1, 0, -4, -1, 2, 6];
+
+function insertionSort(arr) {
+  var length = arr.length - 1;
+  for (let i = 1; i <= length; i++) {
+    var temp = arr[i],
+      j = i;
+    while (j > 0 && arr[j - 1] > temp) {
+      arr[j] = arr[j - 1];
+      j--;
+    }
+    arr[j] = temp;
+  }
+  return arr;
+}
+console.log("insertion Sort", insertionSort(arrayForInsertionSort));

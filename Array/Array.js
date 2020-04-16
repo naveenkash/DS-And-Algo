@@ -52,3 +52,38 @@ function insertionSort(arr) {
   return arr;
 }
 console.log("insertion Sort", insertionSort(arrayForInsertionSort));
+
+var arrayForMergeSort = [9, 4, 1, 3, 7, -3, 6];
+
+function mergeSortArray(arr) {
+  var length = arr.length;
+  if (length < 2) {
+    return arr;
+  }
+  var midIndex = Math.floor(length / 2),
+    leftArray = arr.slice(0, midIndex),
+    rightArray = arr.slice(midIndex),
+    left = mergeSortArray(leftArray),
+    right = mergeSortArray(rightArray);
+
+  return mergeArray(left, right);
+}
+
+function mergeArray(left, right) {
+  var tempArr = [];
+  var lLen = left.length - 1,
+    rLen = right.length - 1,
+    l = 0,
+    r = 0;
+  while (l <= lLen && r <= rLen) {
+    if (left[l] < right[r]) {
+      tempArr.push(left[l]);
+      l++;
+    } else {
+      tempArr.push(right[r]);
+      r++;
+    }
+  }
+  return tempArr.concat(left.slice(l).concat(right.slice(r)));
+}
+console.log("mergeSortArray", mergeSortArray(arrayForMergeSort));

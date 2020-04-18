@@ -160,6 +160,89 @@ function mergeSortDoublyLinkedList(left, right) {
 }
 // Expected output 1-><-2-><-3-><-4-><-5-><-6-><-7-><-8-> null (-> = null <- = prev) <-5-> 5 prev = 4 , 5 next = 6
 console.log(
-  "mergeSortDoublyLinkedList",
+  "mergeSort Doubly Linked List",
   mergeDoublyLinkedList(doublyLinkedList2.head)
+);
+
+var doublyLinkedList3 = new DoublyLinkedList();
+doublyLinkedList3.insertAtlast(4);
+doublyLinkedList3.insertAtlast(2);
+doublyLinkedList3.insertAtlast(8);
+doublyLinkedList3.insertAtlast(5);
+doublyLinkedList3.insertAtlast(1);
+doublyLinkedList3.insertAtlast(3);
+doublyLinkedList3.insertAtlast(9);
+doublyLinkedList3.insertAtlast(6);
+doublyLinkedList3.insertAtlast(7);
+
+function quickSortDoublyLinkedList(ll, left, right) {
+  if (ll == null || ll.next == null) {
+    return;
+  }
+  var partitionIndex,
+    count = 0,
+    pivot = ll,
+    current = ll;
+  if (left < right) {
+    while (count < right && current.next !== null) {
+      current = current.next;
+      pivot = current;
+      count++;
+    }
+    partitionIndex = partitionDoublyList(ll, pivot, left, right);
+
+    quickSortDoublyLinkedList(ll, left, partitionIndex - 1);
+    quickSortDoublyLinkedList(ll, partitionIndex + 1, right);
+  }
+  return ll;
+}
+function partitionDoublyList(ll, pivot, left, right) {
+  var pivotValue = pivot,
+    current = ll,
+    pivotIndex = left,
+    count = left,
+    count2 = 0;
+
+  while (count2 < left && current.next !== null) {
+    current = current.next;
+    count2++;
+  }
+
+  while (count < right && current.next !== null) {
+    if (current.value <= pivotValue.value) {
+      swapDoublyNode(ll, pivotIndex, count);
+      pivotIndex++;
+    }
+    current = current.next;
+    count++;
+  }
+  swapDoublyNode(ll, pivotIndex, right);
+  return pivotIndex;
+}
+function swapDoublyNode(ll, i, j) {
+  var current = ll,
+    current2 = ll,
+    temp1 = ll,
+    temp2 = ll,
+    temp3 = null,
+    count1 = 0,
+    count2 = 0;
+  while (count1 < i && current.next !== null) {
+    current = current.next;
+    temp1 = current;
+    count1++;
+  }
+  while (count2 < j && current2.next !== null) {
+    current2 = current2.next;
+    temp2 = current2;
+    count2++;
+  }
+
+  temp3 = { ...temp1 };
+  temp1.value = temp2.value;
+  temp2.value = temp3.value;
+}
+console.log(
+  "quickSort Doubly Linked List",
+  quickSortDoublyLinkedList(doublyLinkedList3.head, 0, doublyLinkedList3.size)
 );

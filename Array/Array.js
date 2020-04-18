@@ -13,7 +13,7 @@ function bubbleSort(arr) {
   }
   return arr;
 }
-console.log("Bubble Sort", bubbleSort(arrayForBubbleSort));
+console.log("Bubble Sort Array", bubbleSort(arrayForBubbleSort));
 
 var arrayForSelectionSort = [8, 5, 1, 0, -4, 10, 2, 5];
 
@@ -51,7 +51,7 @@ function insertionSort(arr) {
   }
   return arr;
 }
-console.log("insertion Sort", insertionSort(arrayForInsertionSort));
+console.log("insertion Sort Array", insertionSort(arrayForInsertionSort));
 
 var arrayForMergeSort = [9, 4, 1, 3, 7, -3, 6];
 
@@ -86,4 +86,39 @@ function mergeArray(left, right) {
   }
   return tempArr.concat(left.slice(l).concat(right.slice(r)));
 }
-console.log("mergeSortArray", mergeSortArray(arrayForMergeSort));
+console.log("mergeSort Array", mergeSortArray(arrayForMergeSort));
+
+var arrayForQuicksortSort = [3, 9, 7, 4, 1, 80, 5, -1, 2];
+
+function quicksortArray(arr, left, right) {
+  var pivot = right,
+    partitionIndex;
+
+  if (left < right) {
+    partitionIndex = partitionQuicksort(arr, pivot, left, right);
+    quicksortArray(arr, left, partitionIndex - 1);
+    quicksortArray(arr, partitionIndex + 1, right);
+  }
+  return arr;
+}
+function partitionQuicksort(arr, pivot, left, right, a) {
+  var pivotValue = arr[pivot],
+    partitionIndex = left;
+  for (let i = left; i < right; i++) {
+    if (arr[i] < pivotValue) {
+      swapQuicksort(arr, i, partitionIndex);
+      partitionIndex++;
+    }
+  }
+  swapQuicksort(arr, partitionIndex, right);
+  return partitionIndex;
+}
+function swapQuicksort(arr, i, j) {
+  var temp = arr[j];
+  arr[j] = arr[i];
+  arr[i] = temp;
+}
+console.log(
+  "quicksort Array",
+  quicksortArray(arrayForQuicksortSort, 0, arrayForQuicksortSort.length - 1)
+);

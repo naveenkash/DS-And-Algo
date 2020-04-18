@@ -101,7 +101,7 @@ function quicksortArray(arr, left, right) {
   }
   return arr;
 }
-function partitionQuicksort(arr, pivot, left, right, a) {
+function partitionQuicksort(arr, pivot, left, right) {
   var pivotValue = arr[pivot],
     partitionIndex = left;
   for (let i = left; i < right; i++) {

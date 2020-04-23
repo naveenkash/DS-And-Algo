@@ -175,74 +175,50 @@ doublyLinkedList3.insertAtlast(9);
 doublyLinkedList3.insertAtlast(6);
 doublyLinkedList3.insertAtlast(7);
 
-function quickSortDoublyLinkedList(ll, left, right) {
-  if (ll == null || ll.next == null) {
+function quickSortDoublyLinkedList(left, right) {
+  if (left == null || left.next == null) {
     return;
   }
-  var partitionIndex,
-    count = 0,
-    pivot = ll,
-    current = ll;
-  if (left < right) {
-    while (count < right && current.next !== null) {
-      current = current.next;
-      pivot = current;
-      count++;
-    }
-    partitionIndex = partitionDoublyList(ll, pivot, left, right);
-
-    quickSortDoublyLinkedList(ll, left, partitionIndex - 1);
-    quickSortDoublyLinkedList(ll, partitionIndex + 1, right);
+  var partitionNode;
+  if (right != null && left != right && left != right.next) {
+    partitionNode = partitionDoublyList(left, right);
+    quickSortDoublyLinkedList(left, partitionNode.prev);
+    quickSortDoublyLinkedList(partitionNode.next, right);
   }
-  return ll;
+  return left;
 }
-function partitionDoublyList(ll, pivot, left, right) {
-  var pivotValue = pivot,
-    current = ll,
-    pivotIndex = left,
-    count = left,
-    count2 = 0;
 
-  while (count2 < left && current.next !== null) {
-    current = current.next;
-    count2++;
-  }
-
-  while (count < right && current.next !== null) {
-    if (current.value <= pivotValue.value) {
-      swapDoublyNode(ll, pivotIndex, count);
-      pivotIndex++;
+function partitionDoublyList(left, right) {
+  var i = left.prev,
+    pivot = right,
+    j = left;
+  while (j != right && j.next) {
+    if (j.value <= pivot.value) {
+      i = i == null ? left : i.next;
+      var temp = i.value;
+      i.value = j.value;
+      j.value = temp;
     }
-    current = current.next;
-    count++;
+    j = j.next;
   }
-  swapDoublyNode(ll, pivotIndex, right);
-  return pivotIndex;
+  i = i == null ? left : i.next;
+  var temp = pivot.value;
+  pivot.value = i.value;
+  i.value = temp;
+  return i;
 }
-function swapDoublyNode(ll, i, j) {
-  var current = ll,
-    current2 = ll,
-    temp1 = ll,
-    temp2 = ll,
-    temp3 = null,
-    count1 = 0,
-    count2 = 0;
-  while (count1 < i && current.next !== null) {
-    current = current.next;
-    temp1 = current;
-    count1++;
-  }
-  while (count2 < j && current2.next !== null) {
-    current2 = current2.next;
-    temp2 = current2;
-    count2++;
-  }
 
-  temp3 = { ...temp1 };
-  temp1.value = temp2.value;
-  temp2.value = temp3.value;
+function lastNode(ll) {
+  var current = ll;
+  while (current.next) {
+    current = current.next;
+  }
+  return current;
 }
 console.log(
   "quickSort Doubly Linked List",
-  quickSortDoublyLinkedList(doublyLinkedList3.head, 0, doublyLinkedList3.size)
+  quickSortDoublyLinkedList(
+    doublyLinkedList3.head,
+    lastNode(doublyLinkedList3.head)
+  )
 );

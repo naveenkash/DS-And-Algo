@@ -80,3 +80,31 @@ twoStacksInOneArray(10);
 // twoStacksInOneArray.push2(2);
 // twoStacksInOneArray.pop1();
 // twoStacksInOneArray.pop2();
+
+function areParenthesisBanlanaced(exp) {
+  var stack = [],
+    expSplit = exp.split("");
+  for (let i = 0; i < expSplit.length; i++) {
+    var parenthesis = expSplit[i];
+    if (parenthesis == "[" || parenthesis == "{" || parenthesis == "(") {
+      stack.push(parenthesis);
+    } else if (parenthesis == "]" || parenthesis == "}" || parenthesis == ")") {
+      if (stack.length <= 0) {
+        return "Not Balanced";
+      }
+      var popValue = stack.pop();
+      if (popValue == "[" || popValue == "(" || popValue == "{") {
+      } else {
+        return "Not Balanced";
+      }
+    }
+  }
+
+  if (stack.length <= 0) {
+    return "Balanced";
+  } else {
+    return "Not Balanced";
+  }
+}
+var exp = "[{(())}][]";
+console.log("Are Parenthesis Banlanaced =", areParenthesisBanlanaced(exp));

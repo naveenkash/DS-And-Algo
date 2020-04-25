@@ -81,7 +81,7 @@ twoStacksInOneArray(10);
 // twoStacksInOneArray.pop1();
 // twoStacksInOneArray.pop2();
 
-function areParenthesisBanlanaced(exp) {
+function areParenthesesBanlanaced(exp) {
   var stack = [],
     expSplit = exp.split("");
   for (let i = 0; i < expSplit.length; i++) {
@@ -107,4 +107,4 @@ function areParenthesisBanlanaced(exp) {
   }
 }
 var exp = "[{(())}][]";
-console.log("Are Parenthesis Banlanaced =", areParenthesisBanlanaced(exp));
+console.log("Are Parentheses Banlanaced =", areParenthesesBanlanaced(exp));

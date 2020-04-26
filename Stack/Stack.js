@@ -107,4 +107,4 @@ function areParenthesesBanlanaced(exp) {
   }
 }
 var exp = "[{(())}][]";
-console.log("Are Parentheses Banlanaced =", areParenthesesBanlanaced(exp));
+console.log("Are Parentheses Balanced =", areParenthesesBanlanaced(exp));

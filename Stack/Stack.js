@@ -108,3 +108,17 @@ function areParenthesesBanlanaced(exp) {
 }
 var exp = "[{(())}][]";
 console.log("Are Parentheses Balanced =", areParenthesesBanlanaced(exp));
+
+function reverseStringUsingStackRecursion(str) {
+  if (str == "") {
+    return str;
+  } else {
+    return reverseStringUsingStackRecursion(str.substr(1)) + str.charAt(0);
+  }
+}
+console.log(
+  "reverse String Using Stack Recursion =",
+  strRevChar,
+  "=",
+  reverseStringUsingStackRecursion(strRevChar)
+);

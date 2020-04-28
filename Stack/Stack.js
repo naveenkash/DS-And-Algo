@@ -19,7 +19,7 @@ function reverseStringUsingStack(str) {
   return strRev;
 }
 console.log(
-  "reverseStringUsingStack = ",
+  "reverse String Using Stack = ",
   strRevChar,
   "= ",
   reverseStringUsingStack(strRevChar)
@@ -122,3 +122,26 @@ console.log(
   "=",
   reverseStringUsingStackRecursion(strRevChar)
 );
+
+function sortStackUsingRecursion(stack) {
+  if (stack.length > 0) {
+    var temp = stack.pop();
+    sortStackUsingRecursion(stack);
+    sortStackInsert(stack, temp);
+  }
+}
+
+function sortStackInsert(stack, elem) {
+  //Base case check if stack is empty or elem is greater than stack top elem
+  if (stack.length == 0 || elem > stack[stack.length - 1]) {
+    stack.push(elem);
+    return;
+  } else {
+    var temp = stack.pop();
+    sortStackInsert(stack, elem);
+    stack.push(temp);
+  }
+}
+var sortStack = [6, 9, 2, 5, 1, 0, -3];
+sortStackUsingRecursion(sortStack);
+console.log("sort Stack Using Recursion", sortStack);

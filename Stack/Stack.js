@@ -83,30 +83,41 @@ twoStacksInOneArray(10);
 
 function areParenthesesBanlanaced(exp) {
   var stack = [],
-    expSplit = exp.split("");
-  for (let i = 0; i < expSplit.length; i++) {
-    var parenthesis = expSplit[i];
-    if (parenthesis == "[" || parenthesis == "{" || parenthesis == "(") {
-      stack.push(parenthesis);
-    } else if (parenthesis == "]" || parenthesis == "}" || parenthesis == ")") {
-      if (stack.length <= 0) {
-        return "Not Balanced";
-      }
-      var popValue = stack.pop();
-      if (popValue == "[" || popValue == "(" || popValue == "{") {
-      } else {
-        return "Not Balanced";
-      }
+    bracket = "";
+  for (let i = 0; i < exp.length; i++) {
+    bracket = exp.charAt(i);
+    if (bracket == "[" || bracket == "{" || bracket == "(") {
+      stack.push(bracket);
+    }
+    switch (bracket) {
+      case "]":
+        var stackTop = stack.pop();
+        if (stackTop == "(" || stackTop == "{") {
+          return false;
+        }
+        break;
+      case "}":
+        var stackTop = stack.pop();
+        if (stackTop == "[" || stackTop == "(") {
+          return false;
+        }
+        break;
+      case ")":
+        var stackTop = stack.pop();
+        if (stackTop == "{" || stackTop == "[") {
+          return false;
+        }
+        break;
     }
   }
 
-  if (stack.length <= 0) {
-    return "Balanced";
+  if (stack.length > 0) {
+    return false;
   } else {
-    return "Not Balanced";
+    return true;
   }
 }
-var exp = "[{(())}][]";
+var exp = "[()]{}{[()()]()}";
 console.log("Are Parentheses Balanced =", areParenthesesBanlanaced(exp));
 
 function reverseStringUsingStackRecursion(str) {

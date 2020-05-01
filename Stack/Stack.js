@@ -156,3 +156,20 @@ function sortStackInsert(stack, elem) {
 var sortStack = [6, 9, 2, 5, 1, 0, -3];
 sortStackUsingRecursion(sortStack);
 console.log("sort Stack Using Recursion", sortStack);
+
+function sortStackUsingTempArray(stack) {
+  var temp = [],
+    pop;
+  while (stack.length > 0) {
+    pop = stack.pop();
+    while (temp.length > 0 && temp[temp.length - 1] > pop) {
+      stack.push(temp.pop());
+    }
+    temp.push(pop);
+  }
+  return temp;
+}
+console.log(
+  "sort Stack Using Temp Array",
+  sortStackUsingTempArray([9, 0, 6, 2, 1, 10, 4, 3, -8])
+);

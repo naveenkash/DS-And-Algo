@@ -31,3 +31,43 @@ Queue();
 // Queue.deQueue();
 // Queue.deQueue();
 // Queue.deQueue();
+
+function QueueUsingLinkedList() {
+  var queue = new LinkedList(),
+    front = queue.head,
+    rear = null;
+  function enQueue(value) {
+    if (value == null) {
+      console.log("No Value Provided");
+      return;
+    }
+    var node = new Node(value),
+      head_ref = queue.head;
+    node.next = head_ref;
+    queue.head = node;
+    front = queue.head;
+    queue.size++;
+  }
+  function deQueue() {
+    var current = queue.head,
+      prev = null;
+    if (queue.size <= 1) {
+      console.log(current);
+      current = null;
+      return;
+    }
+    while (current.next) {
+      prev = current;
+      current = current.next;
+    }
+    prev.next = null;
+    rear = prev;
+    console.log(current);
+  }
+  QueueUsingLinkedList.enQueue = enQueue;
+  QueueUsingLinkedList.deQueue = deQueue;
+}
+QueueUsingLinkedList();
+// QueueUsingLinkedList.enQueue(4);
+// QueueUsingLinkedList.enQueue(2);
+// QueueUsingLinkedList.deQueue();

@@ -22,12 +22,12 @@ function Queue() {
   Queue.deQueue = deQueue;
 }
 Queue();
-Queue.enQueue(1);
-Queue.enQueue(2);
-Queue.enQueue(3);
-Queue.enQueue(4);
-Queue.deQueue();
-Queue.deQueue();
-Queue.deQueue();
-Queue.deQueue();
-Queue.deQueue();
+// Queue.enQueue(1);
+// Queue.enQueue(2);
+// Queue.enQueue(3);
+// Queue.enQueue(4);
+// Queue.deQueue();
+// Queue.deQueue();
+// Queue.deQueue();
+// Queue.deQueue();
+// Queue.deQueue();

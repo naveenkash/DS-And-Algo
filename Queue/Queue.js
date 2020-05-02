@@ -62,6 +62,7 @@ function QueueUsingLinkedList() {
     }
     prev.next = null;
     rear = prev;
+    queue.size--;
     console.log(current);
   }
   QueueUsingLinkedList.enQueue = enQueue;

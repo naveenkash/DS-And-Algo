@@ -72,3 +72,17 @@ QueueUsingLinkedList();
 // QueueUsingLinkedList.enQueue(4);
 // QueueUsingLinkedList.enQueue(2);
 // QueueUsingLinkedList.deQueue();
+
+function reverseQueueusingRecursion(queue) {
+  if (queue == null || queue.length <= 1) {
+    return queue;
+  }
+  var temp = queue.shift();
+  reverseQueueusingRecursion(queue);
+  queue.push(temp);
+  return queue;
+}
+console.log(
+  "reverse Queue using Recursion",
+  reverseQueueusingRecursion([1, 2, 3, 4, 5, 6, 7, 8, 9])
+);

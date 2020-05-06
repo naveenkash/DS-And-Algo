@@ -86,3 +86,28 @@ console.log(
   "reverse Queue using Recursion",
   reverseQueueusingRecursion([1, 2, 3, 4, 5, 6, 7, 8, 9])
 );
+
+function reverseQueueFirstKElements(queue, k) {
+  if (queue == null || queue.length <= 1 || k == null || k > queue.length) {
+    return;
+  }
+  if (k <= 1) {
+    return;
+  }
+  var stack = [];
+  for (let i = 0; i < k; i++) {
+    stack.push(queue.shift());
+  }
+  while (stack.length > 0) {
+    queue.push(stack.pop());
+  }
+  for (let i = 0; i < queue.length - k; i++) {
+    var temp = queue.shift();
+    queue.push(temp);
+  }
+  return queue;
+}
+console.log(
+  "reverse Queue First K Elements",
+  reverseQueueFirstKElements([1, 2, 3, 4, 5, 6, 7, 8, 9], 4)
+);

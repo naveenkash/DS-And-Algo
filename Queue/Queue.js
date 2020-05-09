@@ -111,3 +111,30 @@ console.log(
   "reverse Queue First K Elements",
   reverseQueueFirstKElements([1, 2, 3, 4, 5, 6, 7, 8, 9], 4)
 );
+
+function interLeaveQueue(queue) {
+  if (queue.length % 2 != 0) {
+    return "Input even number of integers.";
+  }
+  var stack = [];
+
+  var halfSize = queue.length / 2;
+  for (let i = 0; i < halfSize; i++) {
+    stack.push(queue.shift());
+  }
+  while (stack.length > 0) {
+    queue.push(stack.pop());
+  }
+  for (let i = 0; i < halfSize; i++) {
+    queue.push(queue.shift());
+  }
+  for (let i = 0; i < halfSize; i++) {
+    stack.push(queue.shift());
+  }
+  while (stack.length > 0) {
+    queue.push(stack.pop());
+    queue.push(queue.shift());
+  }
+  return queue;
+}
+console.log("interLeave Queue", interLeaveQueue([1, 2, 3, 4]));

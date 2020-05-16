@@ -95,6 +95,55 @@ class BST {
     }
     console.log(results);
   }
+  delete(node) {
+    if (node == null) {
+      return;
+    }
+    var current = this.root;
+    var previous = null;
+    while (current) {
+      if (node == current.data) {
+        if (!current.left && !current.right) {
+          // check if node is leaf node
+          delete current.data;
+          this.size--;
+        } else if (current.left && current.right) {
+          // check if node contains two children node
+          let currPrev = current,
+            curr = current.left;
+          while (curr.right) {
+            currPrev = curr;
+            curr = curr.right;
+          }
+          if (node == this.root.data) {
+            this.root.data = curr.data;
+          }
+          if (curr.left) {
+            // check if last node contains any left node
+            currPrev.right = curr.left;
+          }
+          current.data = curr.data;
+          delete curr.data;
+          this.size--;
+        } else if (current.left || current.right) {
+          // check if node contains one child element
+          if (previous.right.data == current.data) {
+            previous.right = current.right;
+          } else {
+            previous.left = current.left;
+          }
+          this.size--;
+        }
+      }
+      if (node < current.data) {
+        previous = current;
+        current = current.left;
+      } else {
+        previous = current;
+        current = current.right;
+      }
+    }
+  }
 }
 var bst = new BST();
 bst.insert(15);
@@ -104,6 +153,7 @@ bst.insert(2);
 bst.insert(12);
 bst.insert(28);
 bst.insert(39);
+bst.delete(36);
 // bst.printInOrder();
 // bst.printPreOrder();
 // bst.printPostOrder();

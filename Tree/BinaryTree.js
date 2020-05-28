@@ -188,4 +188,14 @@ bst2.insert(2);
 bst2.insert(12);
 bst2.insert(28);
 bst2.insert(39);
-console.log('checkIfBstIdentical', checkIfBstIdentical(bst1.root, bst2.root));
+
+console.log('check If Bst Identical', checkIfBstIdentical(bst1.root, bst2.root));
+
+function calculateHeightOfTree(root) {
+  if (root == null) {
+    return 0;
+  }
+  return 1 + Math.max((calculateHeightOfTree(root.left), calculateHeightOfTree(root.right)));
+}
+// Recursive Approach
+console.log('Height of tree is ',calculateHeightOfTree(bst.root));

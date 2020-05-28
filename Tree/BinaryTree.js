@@ -159,3 +159,33 @@ bst.delete(36);
 // bst.printPostOrder();
 // bst.breadthFirstSearch();
 console.log(bst);
+
+function checkIfBstIdentical(node1, node2) {
+  if (node1 == null && node2 == null) {
+    return true;
+  }
+  if (node1 != null && node2 != null) {
+    if (node1.data == node2.data && checkIfBstIdentical(node1.left, node2.left) && checkIfBstIdentical(node1.right, node2.right)) {
+      return true;
+    }
+    return false;
+  }
+}
+var bst1 = new BST();
+bst1.insert(15);
+bst1.insert(3);
+bst1.insert(36);
+bst1.insert(2);
+bst1.insert(12);
+bst1.insert(28);
+bst1.insert(39);
+
+var bst2 = new BST();
+bst2.insert(15);
+bst2.insert(3);
+bst2.insert(36);
+bst2.insert(2);
+bst2.insert(12);
+bst2.insert(28);
+bst2.insert(39);
+console.log(checkIfBstIdentical(bst1.root, bst2.root))

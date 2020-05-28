@@ -188,4 +188,4 @@ bst2.insert(2);
 bst2.insert(12);
 bst2.insert(28);
 bst2.insert(39);
-console.log('checkIfBstIdentical', checkIfBstIdentical(bst1.root, bst2.root))
+console.log('checkIfBstIdentical', checkIfBstIdentical(bst1.root, bst2.root));

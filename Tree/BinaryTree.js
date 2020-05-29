@@ -198,4 +198,28 @@ function calculateHeightOfTree(root) {
   return 1 + Math.max((calculateHeightOfTree(root.left), calculateHeightOfTree(root.right)));
 }
 // Recursive Approach
-console.log('Height of tree is ',calculateHeightOfTree(bst.root));
+console.log('calculate Height Of Tree Recursion', calculateHeightOfTree(bst.root));
+
+function calculateHeightOfTreeIterative(root) {
+  let height = 0;
+  if (root == null) {
+    return 0;
+  }
+  let queue = [];
+  queue.push(root)
+  while (queue.length) {
+    let size = queue.length;
+    while (size--) {
+      let currentNode = queue.shift();
+      if (currentNode.left) {
+        queue.push(currentNode.left)
+      }
+      if (currentNode.right) {
+        queue.push(currentNode.right)
+      }
+    }
+    height++;
+  }
+  return height;
+}
+console.log('calculate Height Of Tree Iterative', calculateHeightOfTree(bst.root));

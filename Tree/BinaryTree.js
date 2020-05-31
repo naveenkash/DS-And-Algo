@@ -255,3 +255,24 @@ function spiralOrdertraversal(root) {
 }
 console.log('spiralOrdertraversal ',
   spiralOrdertraversal(bst.root));
+
+function reverseLevelOrder(root) {
+  let queue = [], stack = [];
+  queue.push(root);
+  let size = queue.length;
+  while (size) {
+    let dequeueNode = queue.shift();
+    dequeueNode.data ? stack.push(dequeueNode.data) : stack.push(null);
+    if (dequeueNode.right) {
+      queue.push(dequeueNode.right);
+    }
+    if (dequeueNode.left) {
+      queue.push(dequeueNode.left);
+    }
+    size = queue.length;
+  };
+  while (stack.length) {
+    console.log(stack.pop());
+  }
+}
+reverseLevelOrder(bst.root);

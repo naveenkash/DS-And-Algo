@@ -255,3 +255,26 @@ function spiralOrdertraversal(root) {
 }
 console.log('spiralOrdertraversal ',
   spiralOrdertraversal(bst.root));
+
+function reverseLevelOrder(root) {
+  let queue = [], stack = [], result = [];
+  queue.push(root);
+  let size = queue.length;
+  while (size) {
+    let dequeueNode = queue.shift();
+    dequeueNode.data ? stack.push(dequeueNode.data) : stack.push(null);
+    if (dequeueNode.right) {
+      queue.push(dequeueNode.right);
+    }
+    if (dequeueNode.left) {
+      queue.push(dequeueNode.left);
+    }
+    size = queue.length;
+  };
+  while (stack.length) {
+    result.push(stack.pop());
+  }
+  return result;
+}
+console.log('reverseLevelOrder ',
+  reverseLevelOrder(bst.root));

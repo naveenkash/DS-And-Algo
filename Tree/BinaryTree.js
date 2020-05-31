@@ -223,3 +223,35 @@ function calculateHeightOfTreeIterative(root) {
   return height;
 }
 console.log('calculate Height Of Tree Iterative', calculateHeightOfTree(bst.root));
+
+function spiralOrdertraversal(root) {
+  let stack1 = [], stack2 = [], result = [];
+  stack1.push(root);
+  let size = stack1.length;
+  while (size) {
+    let poppedNode = stack1.pop();
+    if (poppedNode.left) {
+      stack2.push(poppedNode.left);
+    }
+    if (poppedNode.right) {
+      stack2.push(poppedNode.right);
+    }
+    console.log(poppedNode);
+
+    poppedNode.data ? result.push(poppedNode.data) : result.push(null);
+    while (stack2.length) {
+      let poppedNode = stack2.pop();
+      if (poppedNode.right) {
+        stack1.push(poppedNode.right);
+      }
+      if (poppedNode.left) {
+        stack1.push(poppedNode.left);
+      }
+      poppedNode.data ? result.push(poppedNode.data) : result.push(null);
+    }
+    size = stack1.length;
+  }
+  return result;
+}
+console.log('spiralOrdertraversal ',
+  spiralOrdertraversal(bst.root));

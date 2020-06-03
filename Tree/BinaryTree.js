@@ -236,8 +236,6 @@ function spiralOrdertraversal(root) {
     if (poppedNode.right) {
       stack2.push(poppedNode.right);
     }
-    console.log(poppedNode);
-
     poppedNode.data ? result.push(poppedNode.data) : result.push(null);
     while (stack2.length) {
       let poppedNode = stack2.pop();

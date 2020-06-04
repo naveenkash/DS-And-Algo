@@ -1,6 +1,7 @@
 
-let maxheap = [];
+let maxheap = [], minheap = [];
 maxheap[0] = null;
+minheap[0] = null;
 // Setting index 0 value as null for easy calulation. Starting index from 1
 function maxHeap() {
 
@@ -63,3 +64,65 @@ maxHeap.insert(3);
 maxHeap.insert(1);
 // console.log(maxHeap.extractMax());
 console.log('Max Heap =', maxheap);
+
+function minHeap() {
+    function insert(value) {
+        minheap.push(value);
+        heapifyUp();
+    }
+    function heapifyUp() {
+        let index = minheap.length - 1;
+        while (index > 1) {
+            let element = minheap[index],
+                parentIndex = Math.floor(index / 2),
+                parent = minheap[parentIndex];
+            if (parent <= element) return
+            minheap[index] = parent;
+            minheap[parentIndex] = element;
+            index = parentIndex;
+        }
+
+    }
+
+    function extractMin() {
+        let min = minheap[1];
+        minheap[1] = minheap.pop();
+        heapifyDown(1);
+        return min;
+    }
+
+    function heapifyDown(index) {
+        let left = 2 * index,
+            right = 2 * index + 1,
+            length = minheap.length,
+            smallest = index;
+        // if right child is smaller than parent
+        if (left <= length && minheap[left] < minheap[smallest]) {
+            smallest = left;
+        }
+        // if right child is smaller than parent
+        if (right <= length && minheap[right] < minheap[smallest]) {
+            smallest = right
+        }
+
+        if (smallest !== index) {
+            let temp = minheap[smallest];
+            minheap[smallest] = minheap[index];
+            minheap[index] = temp;
+            heapifyDown(smallest)
+        }
+    }
+    minHeap.insert = insert;
+    minHeap.extractMin = extractMin;
+}
+
+minHeap();
+minHeap.insert(1);
+minHeap.insert(2);
+minHeap.insert(0);
+minHeap.insert(4);
+minHeap.insert(2);
+minHeap.insert(1);
+minHeap.insert(-3);
+// console.log(minHeap.extractMin());
+console.log('Min Heap =', minheap);

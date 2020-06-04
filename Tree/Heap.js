@@ -1,30 +1,30 @@
 
-let heap = [];
-heap[0] = null;
+let maxheap = [];
+maxheap[0] = null;
 // Setting index 0 value as null for easy calulation. Starting index from 1
 function maxHeap() {
 
     function insert(data) {
-        heap.push(data);
+        maxheap.push(data);
         heapifyUp();
     }
 
     function extractMax() {
-        let max = heap[1];
-        heap[1] = heap.pop();
+        let max = maxheap[1];
+        maxheap[1] = maxheap.pop();
         heapifyDown(1);
         return max;
     }
 
     function heapifyUp() {
-        let index = heap.length - 1;
+        let index = maxheap.length - 1;
         while (index > 1) {
-            let element = heap[index],
+            let element = maxheap[index],
                 parentIndex = Math.floor(index / 2),
-                parent = heap[parentIndex];
+                parent = maxheap[parentIndex];
             if (parent >= element) return
-            heap[index] = parent;
-            heap[parentIndex] = element;
+            maxheap[index] = parent;
+            maxheap[parentIndex] = element;
             index = parentIndex;
         }
     }
@@ -32,20 +32,20 @@ function maxHeap() {
     function heapifyDown(index) {
         let leftChild = 2 * index,
             rightChild = 2 * index + 1,
-            largest = index, length = heap.length;
+            largest = index, length = maxheap.length;
         // if left child is greater than parent
-        if (leftChild <= length && heap[leftChild] > heap[largest]) {
+        if (leftChild <= length && maxheap[leftChild] > maxheap[largest]) {
             largest = leftChild;
         }
         // if right child is greater than parent
-        if (rightChild <= length && heap[rightChild] > heap[largest]) {
+        if (rightChild <= length && maxheap[rightChild] > maxheap[largest]) {
             largest = rightChild;
         }
 
         if (largest !== index) {
-            let temp = heap[largest];
-            heap[largest] = heap[index];
-            heap[index] = temp;
+            let temp = maxheap[largest];
+            maxheap[largest] = maxheap[index];
+            maxheap[index] = temp;
             heapifyDown(largest);
         }
     }
@@ -62,4 +62,4 @@ maxHeap.insert(3);
 maxHeap.insert(3);
 maxHeap.insert(1);
 // console.log(maxHeap.extractMax());
-console.log('Max Heap =', heap);
+console.log('Max Heap =', maxheap);

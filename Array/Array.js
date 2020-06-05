@@ -122,3 +122,47 @@ console.log(
   "quicksort Array",
   quicksortArray(arrayForQuicksortSort, 0, arrayForQuicksortSort.length - 1)
 );
+
+var arrayForHeapSort = [0, 2, 3, 4, 8, 5, 6, 1, 7];
+arrayForHeapSort.unshift(null); // adding null at index 0 for easy calculations
+
+function heapSort(arr) {
+  let n = arr.length;
+  buildMaxHeap();
+  while (n > 1) {
+    swap(1, n - 1); // n - 1 is last index in array and 0 is first element to swap 
+    n = n - 1; // reducing n size so it's not iterated over element from end again
+    heapifyDown(1); // making max heap again after swap element
+  }
+  function buildMaxHeap() {
+    let startIdx = Math.floor(n / 2);
+    for (let i = startIdx; i >= 1; i--) {
+      heapifyDown(i);
+    }
+  }
+  function heapifyDown(i) {
+    let largest = i,
+      left = 2 * i,
+      right = 2 * i + 1;
+
+    if (left < n && arr[left] > arr[largest]) {
+      largest = left;
+    }
+
+    if (right < n && arr[right] > arr[largest]) {
+      largest = right;
+    }
+
+    if (largest !== i) {
+      swap(i, largest);
+      heapifyDown(largest);
+    }
+  }
+  function swap(index1, index2) {
+    let temp = arr[index1];
+    arr[index1] = arr[index2];
+    arr[index2] = temp;
+  }
+  return arr
+}
+console.log('Heap Sort ', heapSort(arrayForHeapSort));

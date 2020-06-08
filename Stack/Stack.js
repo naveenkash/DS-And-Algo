@@ -92,19 +92,19 @@ function areParenthesesBanlanaced(exp) {
     switch (bracket) {
       case "]":
         var stackTop = stack.pop();
-        if (stackTop == "(" || stackTop == "{") {
+        if (stackTop == "(" || stackTop == "{" || stackTop == undefined) {
           return false;
         }
         break;
       case "}":
         var stackTop = stack.pop();
-        if (stackTop == "[" || stackTop == "(") {
+        if (stackTop == "[" || stackTop == "(" || stackTop == undefined) {
           return false;
         }
         break;
       case ")":
         var stackTop = stack.pop();
-        if (stackTop == "{" || stackTop == "[") {
+        if (stackTop == "{" || stackTop == "[" || stackTop == undefined) {
           return false;
         }
         break;

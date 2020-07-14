@@ -165,7 +165,11 @@ function checkIfBstIdentical(node1, node2) {
     return true;
   }
   if (node1 != null && node2 != null) {
-    if (node1.data == node2.data && checkIfBstIdentical(node1.left, node2.left) && checkIfBstIdentical(node1.right, node2.right)) {
+    if (
+      node1.data == node2.data &&
+      checkIfBstIdentical(node1.left, node2.left) &&
+      checkIfBstIdentical(node1.right, node2.right)
+    ) {
       return true;
     }
     return false;
@@ -189,16 +193,27 @@ bst2.insert(12);
 bst2.insert(28);
 bst2.insert(39);
 
-console.log('check If Bst Identical', checkIfBstIdentical(bst1.root, bst2.root));
+console.log(
+  "check If Bst Identical",
+  checkIfBstIdentical(bst1.root, bst2.root)
+);
 
 function calculateHeightOfTree(root) {
   if (root == null) {
     return 0;
   }
-  return 1 + Math.max((calculateHeightOfTree(root.left), calculateHeightOfTree(root.right)));
+  return (
+    1 +
+    Math.max(
+      (calculateHeightOfTree(root.left), calculateHeightOfTree(root.right))
+    )
+  );
 }
 // Recursive Approach
-console.log('calculate Height Of Tree Recursion', calculateHeightOfTree(bst.root));
+console.log(
+  "calculate Height Of Tree Recursion",
+  calculateHeightOfTree(bst.root)
+);
 
 function calculateHeightOfTreeIterative(root) {
   let height = 0;
@@ -206,26 +221,31 @@ function calculateHeightOfTreeIterative(root) {
     return 0;
   }
   let queue = [];
-  queue.push(root)
+  queue.push(root);
   while (queue.length) {
     let size = queue.length;
     while (size--) {
       let currentNode = queue.shift();
       if (currentNode.left) {
-        queue.push(currentNode.left)
+        queue.push(currentNode.left);
       }
       if (currentNode.right) {
-        queue.push(currentNode.right)
+        queue.push(currentNode.right);
       }
     }
     height++;
   }
   return height;
 }
-console.log('calculate Height Of Tree Iterative', calculateHeightOfTree(bst.root));
+console.log(
+  "calculate Height Of Tree Iterative",
+  calculateHeightOfTree(bst.root)
+);
 
 function spiralOrdertraversal(root) {
-  let stack1 = [], stack2 = [], result = [];
+  let stack1 = [],
+    stack2 = [],
+    result = [];
   stack1.push(root);
   let size = stack1.length;
   while (size) {
@@ -251,11 +271,12 @@ function spiralOrdertraversal(root) {
   }
   return result;
 }
-console.log('spiralOrdertraversal ',
-  spiralOrdertraversal(bst.root));
+console.log("spiralOrdertraversal ", spiralOrdertraversal(bst.root));
 
 function reverseLevelOrder(root) {
-  let queue = [], stack = [], result = [];
+  let queue = [],
+    stack = [],
+    result = [];
   queue.push(root);
   let size = queue.length;
   while (size) {
@@ -268,11 +289,11 @@ function reverseLevelOrder(root) {
       queue.push(dequeueNode.left);
     }
     size = queue.length;
-  };
+  }
   while (stack.length) {
     result.push(stack.pop());
   }
   return result;
 }
-console.log('reverseLevelOrder ',
-  reverseLevelOrder(bst.root));
+console.log("reverseLevelOrder ", reverseLevelOrder(bst.root));
+[1, 2, null, null, 3, null, null][(1, 2, null, null, 3, null, null)];

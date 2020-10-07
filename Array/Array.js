@@ -130,7 +130,7 @@ function heapSort(arr) {
   let n = arr.length;
   buildMaxHeap();
   while (n > 1) {
-    swap(1, n - 1); // n - 1 is last index in array and 0 is first element to swap 
+    swap(1, n - 1); // n - 1 is last index in array and 0 is first element to swap
     n = n - 1; // reducing n size so it's not iterated over element from end again
     heapifyDown(1); // making max heap again after swap element
   }
@@ -163,6 +163,23 @@ function heapSort(arr) {
     arr[index1] = arr[index2];
     arr[index2] = temp;
   }
-  return arr
+  return arr;
 }
-console.log('Heap Sort ', heapSort(arrayForHeapSort));
+console.log("Heap Sort ", heapSort(arrayForHeapSort));
+
+function binarySearch(arr, target, low, high) {
+  let mid = Math.floor((low + high) / 2);
+  if (arr[mid] == target) {
+    return mid;
+  }
+  if (low == high) {
+    return null;
+  }
+  if (arr[mid] < target) {
+    return binarySearch(arr, target, mid + 1, high);
+  }
+  if (arr[mid] > target) {
+    return binarySearch(arr, target, low - 1, mid);
+  }
+}
+console.log("Binary Search ", binarySearch([1, 2, 3, 4, 6, 7, 8, 9], 8, 0, 7));

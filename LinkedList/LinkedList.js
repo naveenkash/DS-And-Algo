@@ -174,7 +174,7 @@ var addNode4 = new Node(5, addNode3);
 var l2 = new Node(4, addNode4);
 
 function mergeTwoSortedLinkedList(l1, l2) {
-  var mergeSortedLinkedList = { value: -1, next: null };
+  var mergeSortedLinkedList = new Node();
   var dummyNode = mergeSortedLinkedList;
   while (l1 && l2) {
     if (l1.value > l2.value) {
@@ -202,6 +202,7 @@ function getNode() {
     var list = new Node(randomNumber2, randomList);
     randomList = list;
   }
+  console.log({ ...randomList });
   return randomList;
 }
 
@@ -210,49 +211,44 @@ function mergeSortLinkedList(ll) {
   if (ll == null || ll.next == null) {
     return ll;
   }
-
-  var temp = ll;
-  var slow = ll;
-  var fast = ll;
-
-  while (fast != null && fast.next != null) {
-    temp = slow;
+  let fast = ll,
+    slow = ll,
+    mid = null;
+  while (fast.next != null && fast.next.next != null) {
     slow = slow.next;
     fast = fast.next.next;
   }
-  temp.next = null;
+  mid = slow.next;
+  slow.next = null;
   var left_side = mergeSortLinkedList(ll);
-  var right_side = mergeSortLinkedList(slow);
+  var right_side = mergeSortLinkedList(mid);
   return mergeSortTwoLinkedList(left_side, right_side);
 }
 
 function mergeSortTwoLinkedList(left, right) {
-  var sorted_temp = { value: -1, next: null };
-  var current_node = sorted_temp;
-
+  var sorted = new Node(-1);
+  var current = sorted;
   while (left != null && right != null) {
     if (left.value < right.value) {
-      current_node.next = left;
+      current.next = left;
       left = left.next;
     } else {
-      current_node.next = right;
+      current.next = right;
       right = right.next;
     }
-    current_node = current_node.next;
+    current = current.next;
   }
-  while (left != null) {
-    current_node.next = left;
-    left = left.next;
+  if (left != null) {
+    current.next = left;
   }
-  while (right != null) {
-    current_node.next = right;
-    right = right.next;
+  if (right != null) {
+    current.next = right;
   }
-  return sorted_temp.next;
+  return sorted.next;
 }
 // Expected output 1->2->3->4->5->6->7->8->9
-let mergeSort = mergeSortLinkedList(getNode());
-console.log("mergeSortLinkedList", mergeSort);
+let node = getNode();
+console.log("mergeSortLinkedList", mergeSortLinkedList(node));
 
 function ReverseListInGroupSize(ll, k) {
   var prev = null,
